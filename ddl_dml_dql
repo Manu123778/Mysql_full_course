@@ -1,0 +1,82 @@
+Here’s a comprehensive set of MySQL examples using **DDL (Data Definition Language)** and **DML (Data Manipulation Language)** commands. This will guide you through creating, modifying, inserting, retrieving, and managing database records.
+
+### **DDL Commands**
+DDL commands define the structure of your database.
+
+#### **1. CREATE - Creating database objects**
+```sql
+-- Create a database
+CREATE DATABASE company;
+
+-- Create a table
+CREATE TABLE employees (
+    emp_id INT PRIMARY KEY AUTO_INCREMENT,
+    first_name VARCHAR(50) NOT NULL,
+    last_name VARCHAR(50) NOT NULL,
+    email VARCHAR(100) UNIQUE,
+    hire_date DATE,
+    salary DECIMAL(10,2),
+    dept_id INT,
+    FOREIGN KEY (dept_id) REFERENCES departments(dept_id)
+);
+
+-- Create an index
+CREATE INDEX idx_employee_name ON employees(last_name, first_name);
+```
+
+#### **2. ALTER - Modifying database objects**
+```sql
+-- Add a column
+ALTER TABLE employees ADD COLUMN phone_number VARCHAR(15);
+
+-- Modify a column
+ALTER TABLE employees MODIFY COLUMN salary DECIMAL(12,2);
+
+-- Drop a column
+ALTER TABLE employees DROP COLUMN phone_number;
+```
+
+#### **3. DROP - Removing database objects**
+```sql
+-- Drop a table
+DROP TABLE temp_employees;
+
+-- Drop a database
+DROP DATABASE old_company;
+```
+
+#### **4. TRUNCATE - Removing all data from a table**
+```sql
+TRUNCATE TABLE audit_log;
+```
+
+### **DML Commands**
+DML commands handle the data within the database.
+
+#### **1. INSERT - Adding new records**
+```sql
+INSERT INTO employees (first_name, last_name, email, hire_date, salary, dept_id)
+VALUES ('John', 'Doe', 'john.doe@example.com', '2020-05-15', 75000.00, 10);
+```
+
+#### ** 2. SELECT - Retrieving data**
+```sql
+SELECT first_name, last_name, salary 
+FROM employees 
+WHERE dept_id = 10 AND salary > 70000;
+```
+
+#### **3. UPDATE - Modifying existing records**
+```sql
+UPDATE employees 
+SET salary = 78000.00 
+WHERE emp_id = 101;
+```
+
+#### **4. DELETE - Removing records**
+```sql
+DELETE FROM employees 
+WHERE emp_id = 105;
+```
+
+Would you like me to refine any parts or add additional examples?
